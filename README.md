@@ -1,45 +1,93 @@
-# matlab-simulink-control-system
-Modeling and simulation of a closed-loop control system using MATLAB and Simulink.
 # Closed-Loop Control System – MATLAB & Simulink
 
-## Project Overview
-This project demonstrates the modeling and simulation of a second-order control system with unity negative feedback using MATLAB and Simulink.
+## 1. Project Overview
 
-## System Model
+This project demonstrates the modeling, simulation, and analysis of a second-order closed-loop control system using MATLAB and Simulink.
+
+The objective is to investigate the system's dynamic behavior under a unit step input, focusing on stability, overshoot, damping, and settling time.
+
+## 2. Tools and Technologies
+
+- MATLAB
+- Simulink
+- Transfer Function Modeling
+- Feedback Control
+- Step Response Analysis
+
+## 3. Mathematical Model
 
 The open-loop transfer function is:
 
-G(s) = 30 / (s² + 4s)
+\[
+G(s)=\frac{30}{s^2+4s}
+\]
 
-With unity negative feedback, the closed-loop transfer function becomes:
+The system uses unity negative feedback:
 
-T(s) = 30 / (s² + 4s + 30)
+\[
+H(s)=1
+\]
 
-## Simulation
-A unit step input is applied to evaluate the transient response and stability of the closed-loop system.
+The resulting closed-loop transfer function is:
 
-The simulation illustrates:
-- Overshoot and oscillatory behavior
-- Damped transient response
-- Convergence to a steady-state output of 1
-- Stable closed-loop behavior
+\[
+T(s)=\frac{G(s)}{1+G(s)H(s)}
+=\frac{30}{s^2+4s+30}
+\]
 
-## Simulation Results
+The standard second-order transfer function is:
+
+\[
+T(s)=\frac{\omega_n^2}{s^2+2\zeta\omega_n s+\omega_n^2}
+\]
+
+Comparing coefficients:
+
+- Natural frequency: \(\omega_n=\sqrt{30}\approx5.48\) rad/s
+- Damping ratio: \(\zeta=2/\sqrt{30}\approx0.365\)
+- System type: Underdamped second-order system
+
+## 4. Simulink Model
+
+The simulation includes:
+
+1. Step Input – generates a unit step reference signal.
+2. Sum Block – calculates the difference between the reference and the feedback signal.
+3. Transfer Function – represents the dynamic system.
+4. Scope – visualizes the system response.
+5. To Workspace – exports simulation data for MATLAB analysis.
+6. Unity Negative Feedback – feeds the output back to the summing junction.
+
+The simulation time is 10 seconds.
+
+## 5. Simulation Results
 
 ![Closed-Loop Step Response](step_response.png)
 
-## Tools
-- MATLAB
-- Simulink
+The step response demonstrates an underdamped system with an initial overshoot followed by decaying oscillations.
 
-## Repository Files
-- `create_control_system.m` – MATLAB script that generates and simulates the model
-- `closed_loop_control.slx` – Simulink model
-- `step_response.png` – Simulation output
+### Performance Analysis
 
-## Learning Objectives
-- Transfer function modeling
-- Negative feedback control
-- Step response analysis
-- Closed-loop stability
-- MATLAB/Simulink automation
+| Parameter | Approximate Value |
+|---|---|
+| Natural Frequency | 5.48 rad/s |
+| Damping Ratio | 0.365 |
+| Percentage Overshoot | 28.8% |
+| Peak Time | 0.62 s |
+| Settling Time (2% approximation) | 2.0 s |
+| Steady-State Output | 1 |
+| Steady-State Error (Unit Step) | 0 |
+
+The overshoot and oscillations occur because the damping ratio is between zero and one.
+
+## 6. Stability Analysis
+
+The characteristic equation is:
+
+\[
+s^2+4s+30=0
+\]
+
+The poles are:
+
+\[
