@@ -91,3 +91,53 @@ s^2+4s+30=0
 The poles are:
 
 \[
+s_{1,2}=-2\pm j\sqrt{26}
+\]
+
+Since both poles have negative real parts, the closed-loop system is asymptotically stable.
+
+The output eventually converges to the reference value.
+
+## 7. Running the Project
+
+1. Open MATLAB with Simulink available.
+2. Download the repository files.
+3. Open `closed_loop_control.slx` in Simulink.
+4. Run the simulation.
+5. Open the Scope block to visualize the output.
+
+Alternatively, execute the MATLAB script:
+
+```matlab
+create_control_system
+```
+
+The script automatically creates the Simulink model, runs the simulation, and exports the step response figure.
+
+## 8. Repository Structure
+
+```text
+matlab-simulink-control-system/
+├── README.md
+├── create_control_system.m
+├── closed_loop_control.slx
+└── step_response.png
+```
+
+## 9. Learning Outcomes
+
+This project demonstrates:
+
+- Modeling dynamic systems with transfer functions
+- Designing a unity negative feedback structure
+- Simulating dynamic systems using Simulink
+- Understanding transient and steady-state behavior
+- Analyzing damping ratio and overshoot
+- Evaluating closed-loop stability
+- Automating model generation using MATLAB scripts
+
+## 10. Project Scope
+
+This is an educational simulation project focused on fundamental control engineering concepts.
+
+The model does not represent a validated industrial control application. The performance values are based on analytical second-order system relationships and approximate calculations.
